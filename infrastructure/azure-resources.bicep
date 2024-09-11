@@ -32,8 +32,8 @@ resource apiAppService 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       appSettings: [
         {
-          name: 'FUNCTIONS_WORKER_RUNTIME'
-          value: 'dotnet'
+          name: 'WEBSITE_RUN_FROM_PACKAGE'
+          value: '1'
         }
         {
           name: 'APPINSIGHTS_INSTRUMENTATIONKEY'

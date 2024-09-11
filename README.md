@@ -24,6 +24,18 @@ graph TD
     UpdateProcessor -->|Update Data| CommandDB
     Client -->|Query Data| QueryHandler["Query Handler (Azure Function)"]
     QueryHandler -->|Read| QueryDB["Query DB (Azure Cosmos DB)"]
+
+    subgraph Monitoring
+        AppInsights["Application Insights"]
+    end
+
+    CommandHandler -->|Logs & Telemetry| AppInsights
+    UpdateProcessor -->|Logs & Telemetry| AppInsights
+    QueryHandler -->|Logs & Telemetry| AppInsights
+    apiAppService["App Service API"] -->|Logs & Telemetry| AppInsights
+    Client -->|Send Requests| apiAppService
+    apiAppService -->|Insert Data / Query Data| CommandHandler
+    apiAppService -->|Insert Data / Query Data| QueryHandler
 ```
 
 ## 📂 Repository Structure
@@ -85,6 +97,23 @@ graph TD
 4. Deploy the **App Service API**:
    - Navigate to the **`app-service-api`** folder.
    - Follow the instructions in the [App Service API README](app-service-api/README.md) to deploy the API using GitHub Actions.
+
+5. 📊 Monitoring and Logging with Application Insights
+
+This repository uses **Azure Application Insights** to monitor and collect telemetry data from all the Azure Functions and the App Service API. Application Insights helps to:
+
+- Track request rates, response times, and failure rates.
+- Monitor the performance of each service.
+- Diagnose failures and exceptions.
+- Gain insights into the usage patterns and overall health of the system.
+
+### How to View Application Insights Data
+
+1. Go to the **Azure Portal**.
+2. Navigate to **Application Insights** and select the **`cqrsAppInsights`** resource.
+3. Use the available tools to explore logs, requests, failures, dependencies, and custom metrics.
+
+By using Application Insights, you can maintain visibility into the operational status and performance of your CQRS architecture on Azure.
 
 ## 💡 How It Works
 
