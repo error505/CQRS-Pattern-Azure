@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "command_handler": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7151",
+      "launchBrowser": false
+    }
+  }
+}

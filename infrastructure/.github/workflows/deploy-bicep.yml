@@ -1,0 +1,26 @@
+name: Deploy Azure Infrastructure with Bicep
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-infrastructure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Azure CLI
+      uses: azure/cli@v2.1.0
+      with:
+        azcliversion: 'latest'
+        inlineScript: |
+          # Log in to Azure
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+          # Deploy Bicep Template
+          az deployment group create --resource-group <your-resource-group> --template-file infrastructure/azure-resources.bicep
