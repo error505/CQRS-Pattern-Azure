@@ -20,13 +20,15 @@ The **CQRS Pattern** architecture consists of the following components:
 
 ```mermaid
 graph TD
+graph TD
     Client["Client"] -->|Insert Data| CommandHandler["Command Handler (Azure Function)"]
     CommandHandler -->|Insert| CommandDB["Command DB (Azure Cosmos DB)"]
     CommandHandler -->|Publish Event| EventHub["Azure Event Hubs"]
     EventHub -->|Trigger| UpdateProcessor["Update Processor (Azure Function)"]
     UpdateProcessor -->|Update Data| CommandDB
+    UpdateProcessor -->|Update Data| QueryDB["Query DB (Azure Cosmos DB)"]
     Client -->|Query Data| QueryHandler["Query Handler (Azure Function)"]
-    QueryHandler -->|Read| QueryDB["Query DB (Azure Cosmos DB)"]
+    QueryHandler -->|Read| QueryDB
 
     subgraph Monitoring
         AppInsights["Application Insights"]
