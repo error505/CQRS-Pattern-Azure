@@ -21,7 +21,6 @@ The **CQRS Pattern** architecture consists of the following components:
 
 ```mermaid
 graph TD
-graph TD
     Client["Client"] -->|Insert Data| CommandHandler["Command Handler (Azure Function)"]
     CommandHandler -->|Insert| CommandDB["Command DB (Azure Cosmos DB)"]
     CommandHandler -->|Publish Event| EventHub["Azure Event Hubs"]
