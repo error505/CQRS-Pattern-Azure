@@ -13,7 +13,8 @@ The **CQRS Pattern** architecture consists of the following components:
 5. **Azure Event Hubs**: Serves as the event streaming platform for processing events.
 6. **Azure Cosmos DB**: Used for both command (write) and query (read) operations.
 
-![image](https://github.com/user-attachments/assets/7da4b956-d9ea-45a5-b8da-7778f2efcace)
+![image](https://github.com/user-attachments/assets/f5b46c70-d1d8-4514-9491-4c52c987650f)
+
 
 
 
